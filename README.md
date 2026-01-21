@@ -3,7 +3,7 @@
 Dashboard professionale per monitoraggio Piano di Accumulo Capital (PAC) su ETF.
 Sviluppata con React, Recharts e Lucide React.
 
-![PAC Dashboard Screenshot](screenshot.png)
+![PAC Dashboard Screenshot](assets/dashboard-preview.png)
 
 ## Features
 
