@@ -1,60 +1,65 @@
-# PAC ETF Dashboard
+# PAC ETF Dashboard - Professional Trading Platform
 
-Dashboard professionale per monitoraggio Piano di Accumulo Capital (PAC) su ETF.
-Sviluppata con React, Recharts e Lucide React.
+Piattaforma avanzata per il monitoraggio PAC e Trading, trasformata in una dashboard professionale stile Bloomberg/TradingView.
 
 ![PAC Dashboard Screenshot](assets/dashboard-preview.png)
 
-## Features
+## 🚀 Nuove Features "Pro"
 
-- ✅ **Configurazione completa via UI** (Importo, Giorno acquisto, Data inizio)
-- ✅ **Calcolo automatico** di PMC, Profitto/Perdita, Quote accumulate
-- ✅ **Grafico professionale interattivo** (Prezzo vs PMC, Marker acquisti)
-- ✅ **3 Temi Dark** (Dark Steel, Midnight Blue, Obsidian)
-- ✅ **Responsive Design** (Ottimizzato per desktop e mobile)
-- ✅ **Persistenza Configurazione** (Salva le impostazioni tra le sessioni)
-- ✅ **Export CSV** (Scarica storico acquisti)
-- ✅ **Zero Backend** (Funziona interamente nel browser)
+- **Sicurezza Dati**: Separazione totale tra codice pubblico e dati privati (`src/private/` gitignored).
+- **Layout Modulare**: Sistema Drag & Drop per personalizzare l'interfaccia.
+- **Watchlist Multi-Asset**: Monitoraggio di più ETF/Azioni con liste personalizzabili.
+- **Analisi Tecnica**:
+  - Indicatori: RSI, MACD, Bollinger Bands, SMA/EMA.
+  - Drawing Tools: Trendlines, Fibonacci, annotazioni.
+- **Multi-Timeframe**: Selettore timeframe (1m, 5m, 1H, 1D, etc).
+- **Grid System**: Layout predefiniti (Default, Focus Trading, Multi-Chart) e salvataggio custom.
 
-## Setup
+## 🛠 Setup & Installazione
 
-Assicurati di avere Node.js installato (versione 16+ raccomandata).
-
+### 1. Installazione Base
 ```bash
-# Installazione dipendenze
 npm install
-
-# Avvio server di sviluppo
-npm start
 ```
 
-La dashboard sarà disponibile su [http://localhost:3000](http://localhost:3000).
+### 2. Setup Dati Privati
+Il progetto include un sistema di sicurezza per i dati sensibili.
+Per attivare la modalità con dati reali:
 
-## Configurazione Dati
+1. Esegui lo script di setup iniziale:
+   ```bash
+   node setup-private.js
+   ```
+   Questo creerà la cartella `src/private` (protetta da git) con i file template.
 
-### Dati Mock
-Il progetto usa dati simulati in `src/data/mockETFData.js`.
-Per modificare i parametri di default, editare `src/config/defaultConfig.js`.
+2. Modifica i file in `src/private/`:
+   - `userConfig.js`: Inserisci i tuoi PAC e API keys.
+   - `watchlists.js`: Configura le tue watchlist.
 
-### Integrazione API Reale
-Per passare a dati reali (es. Yahoo Finance):
-1. Sostituire `generateMockETFData` in `App.js` con una chiamata API `useEffect`.
-2. Assicurarsi che l'API restituisca un array di oggetti `{ date: Date, price: number }`.
-3. Mappare i dati nel formato richiesto prima di passarli al componente `Chart`.
+3. Avvia l'applicazione:
+   ```bash
+   npm start
+   ```
+
+### 3. Build & Deploy
+Per il deploy su GitHub Pages (versione pubblica demo):
+```bash
+npm run build
+# I dati privati NON verranno inclusi nella build se non importati esplicitamente
+# Il sistema userà automaticamente i dati Mock in produzione
+```
+
+## 🔒 Architettura di Sicurezza
+
+- **Codice Pubblico**: Tutto ciò che è in `src/` (eccetto `private`).
+- **Dati Privati**: Cartella `src/private/` (esclusa via `.gitignore`).
+- **DataLoader**: Il modulo `src/utils/dataLoader.js` gestisce il caricamento intelligente:
+  - In locale + file presenti: Carica dati reali.
+  - In produzione / file mancanti: Fallback su dati Mock.
 
 ## Tech Stack
 
-- **Core**: React 18
-- **Charting**: Recharts 2.5
-- **Icons**: Lucide React
-- **Styling**: CSS Modules / Inline Styles (Bloomberd-style dark aesthetic)
-
-## Note Sviluppo
-
-- Struttura modulare (`components/`, `utils/`, `data/`)
-- Nessuna dipendenza da localStorage (usa sessionStorage per config)
-- Calcoli finanziari isolati in `utils/calculations.js`
-
-## License
-
-MIT
+- React 18
+- Recharts 2.5
+- Lucide React (Icons)
+- CSS Modules / Custom Grid System
