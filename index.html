@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAC Dashboard Pro</title>
+    <!-- TradingView Lightweight Charts -->
+    <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="theme-dark">
+    <div class="app-container">
+        <!-- Top Navigation -->
+        <header class="top-bar">
+            <div class="left-section">
+                <div class="symbol-info">
+                    <span id="current-ticker">VWCE.MI</span>
+                    <span class="status-badge" id="market-status">MKT CLOSED</span>
+                </div>
+                <div class="timeframe-selector">
+                    <button class="tf-btn" data-tf="1d">1D</button>
+                    <button class="tf-btn active" data-tf="1w">1W</button>
+                    <button class="tf-btn" data-tf="1m">1M</button>
+                </div>
+            </div>
+            <div class="center-section">
+                <div class="metrics-ticker">
+                    <span class="metric">PMC: <span id="metric-pmc" class="value">--</span></span>
+                    <span class="metric">Investito: <span id="metric-invested" class="value">--</span></span>
+                    <span class="metric">Valore: <span id="metric-value" class="value">--</span></span>
+                    <span class="metric">P&L: <span id="metric-pl" class="value">--</span></span>
+                </div>
+            </div>
+            <div class="right-section">
+                <button id="btn-config" class="icon-btn">⚙️</button>
+                <button id="btn-publish" class="primary-btn">Pubblica</button>
+            </div>
+        </header>
+
+        <!-- Main Content Grid -->
+        <main class="main-grid">
+            <!-- Left Toolbar -->
+            <aside class="left-toolbar">
+                <button class="tool-btn" title="Cursor">✛</button>
+                <button class="tool-btn" title="Trend Line">／</button>
+                <button class="tool-btn" title="Fibonacci">≡</button>
+                <button class="tool-btn" title="Text">T</button>
+            </aside>
+
+            <!-- Chart Area -->
+            <div class="chart-area" id="chart-container">
+                <!-- Chart will be injected here -->
+                <div class="legend-overlay">
+                    <div class="legend-row">
+                        <span class="legend-ticker">VWCE</span>
+                        <span class="legend-price" id="legend-price">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Sidebar (Watchlist) -->
+            <aside class="right-sidebar">
+                <div class="sidebar-header">
+                    <span>Watchlist</span>
+                    <div class="sidebar-actions">
+                        <button class="icon-small">+</button>
+                    </div>
+                </div>
+                <div class="watchlist-content" id="watchlist-container">
+                    <!-- Watchlist items injected here -->
+                </div>
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-header">
+                        <span>Positions</span>
+                    </div>
+                    <div class="positions-list" id="positions-container">
+                        <!-- Positions injected here -->
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Bottom Panel (Collapsed by default or small) -->
+            <div class="bottom-panel">
+                <div class="panel-tabs">
+                    <button class="panel-tab active">Screener Azioni</button>
+                    <button class="panel-tab">Editor Pine</button>
+                    <button class="panel-tab">Tester Strategia</button>
+                    <button class="panel-tab">Pannello Trading</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="config-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Configurazione PAC</h3>
+            <div class="form-group">
+                <label>Importo Mensile (€)</label>
+                <input type="number" id="inp-amount" value="300">
+            </div>
+            <div class="form-group">
+                <label>Giorno Acquisto</label>
+                <input type="number" id="inp-day" value="1">
+            </div>
+            <div class="modal-actions">
+                <button id="btn-close-config">Chiudi</button>
+                <button id="btn-save-config" class="primary-btn">Salva</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
